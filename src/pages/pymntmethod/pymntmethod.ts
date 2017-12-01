@@ -244,7 +244,7 @@ var optionss = this.common.options;
 
     var target = "_blank";
     var options = "location=no,hidden=no";
-    var browser = this.iab.create('http://rakesh.crystalbiltech.com/bitcoin/?data='+encodeURIComponent(this.plan_p)+'&planid='+ encodeURIComponent(this.plan)+'&userid=' + encodeURIComponent(user) + '&planname=' + encodeURIComponent(this.planname), target, options);
+    var browser = this.iab.create('http://rakesh.crystalbiltech.com/bitcoin/?amount='+encodeURIComponent(this.plan_p), target, options);
    
     browser.on('loadstart').subscribe((e) => {
  if (e.url.match('status')) {
