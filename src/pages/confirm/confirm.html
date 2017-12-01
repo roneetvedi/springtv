@@ -1,0 +1,58 @@
+     <ion-header >
+
+  <ion-toolbar color="blue">
+       <button  class="backbtn" (click)="backtomain()" float-left>
+            <ion-icon class="customIcon" name="arrow-back"></ion-icon>
+        </button> 
+  <ion-title>Confirm</ion-title>  
+          
+     </ion-toolbar>   
+</ion-header>
+
+
+ <ion-content padding class="methods">
+<ion-list >
+  <ion-item> 
+ 
+       <h2>{{this.cary.title}}</h2>    
+ <a (click)="movetoplan"><h3>Change</h3></a>    
+  </ion-item>
+</ion-list>
+
+<ion-list>
+  <ion-item color="blue">
+    <ion-avatar item-start>  
+         <img src="{{this.cary.planimage}}"/>   
+     </ion-avatar> 
+
+       <h6>{{this.cary.days}} days</h6>
+    <p>Access for {{this.cary.days}} days</p>    
+   </ion-item>
+</ion-list>
+
+<ion-list>
+  <ion-item>
+<h2>Payment Method</h2>
+  <a (click)="movetoplan"><h3>Change</h3></a>
+  </ion-item>
+</ion-list>
+<!-- <ion-list >
+  <ion-item color="blue">
+    <ion-avatar item-start>
+      <img src="assets/img/visa.png"/>
+    </ion-avatar>
+
+    <h6>Visa or Mastercard</h6>
+    <p>Pay securely with credit/debit card</p>
+  </ion-item>
+</ion-list>   -->
+<!-- <ion-list>
+<div class="last">
+   <ion-item>
+<h2>Due Now</h2>
+    <h3>$14.99</h3>
+  </ion-item>
+  </div>
+</ion-list>  -->
+<!-- <button ion-button block color="blue" class="btn" (click)="carddetail()"><h4>Continue to Pay</h4></button>    -->
+ </ion-content>   
