@@ -20,6 +20,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
   templateUrl: 'pymntmethod.html'
 })
 export class PymntmethodPage {
+   public transaction_sts='';
+   public transaction_id='';
   trans: any;
   paymentnew: any;
   public cary = '';
@@ -113,10 +115,6 @@ var optionss = this.common.options;
                        toast.present();
                                           //  alert(JSON.parse(ids));
                       this.navCtrl.push(ConfirmPage);                    
-                                        },err=>{
-                                          alert('err');
-                                          alert(err);
-                                          alert(JSON.stringify(err));
                                         })
                                       
                                    
@@ -150,7 +148,7 @@ serializeObj(obj) {
 
     var target = "_blank";
     var options = "location=no,hidden=no";
-    var browser = this.iab.create('http://rakesh.crystalbiltech.com/braintree/public_html/?data='+encodeURIComponent(this.plan_p)+'&planid='+ encodeURIComponent(this.plan)+'&userid=' + encodeURIComponent(user) + '&planname=' + encodeURIComponent(this.planname), target, options);
+    var browser = this.iab.create('http://rakesh.crystalbiltech.com/braintree/public_html/?amount='+encodeURIComponent(this.plan_p)+'&planid='+ encodeURIComponent(this.plan)+'&userid=' + encodeURIComponent(user) + '&planname=' + encodeURIComponent(this.planname), target, options);
    
     browser.on('loadstart').subscribe((e) => {
  if (e.url.match('status')) {
@@ -168,8 +166,8 @@ serializeObj(obj) {
           obj[myvala[key1].split("=")[0]] = myvala[key1].split("=")[1];
         }
       };
-      // alert(JSON.stringify(obj));
-       console.log(this.common.options);
+      
+    
 var optionss = this.common.options;
                    
                                   var data_pay = {
@@ -237,20 +235,21 @@ var optionss = this.common.options;
 
  } 
  bitcoin(){
-     alert('bitcoin');
+//     alert('ron');
       var planid =  this.plan;
 
     var user = localStorage.getItem("USERID");
 
     var target = "_blank";
     var options = "location=no,hidden=no";
-    var browser = this.iab.create('http://rakesh.crystalbiltech.com/bitcoin/?amount='+encodeURIComponent(this.plan_p), target, options);
+    let browser = this.iab.create('http://rakesh.crystalbiltech.com/bitcoin/?amount='+encodeURIComponent(this.plan_p)+'&planid='+ encodeURIComponent(this.plan)+'&userid=' + encodeURIComponent(user) + '&planname=' + encodeURIComponent(this.planname), target, options);
    
     browser.on('loadstart').subscribe((e) => {
+//        alert(e.url)
  if (e.url.match('status')) {
-      browser.close();
-      //  alert(e.url)
-          //  alert("close");
+      browser.close()
+//        alert(e.url)
+//            alert("close");
             let data = e.url.split("?"); 
       let obj = {
         id: '',
@@ -262,116 +261,16 @@ var optionss = this.common.options;
           obj[myvala[key1].split("=")[0]] = myvala[key1].split("=")[1];
         }
       };
-      // alert(JSON.stringify(obj));
-       console.log(this.common.options);
-var optionss = this.common.options;
-                   
-                                  var data_pay = {
-                                    userid:user,
-                                    transactionid : obj.id,
-                                    price :  this.plan_p,
-                                    planid :  this.plan,
-                                    planname:this.planname,
-                                    paymentmethod : 'braintree',
-                                    status:obj.status,
-                                  } 
-                                  //  alert(JSON.stringify(data_pay));
-                    var serializ = this.serializeObj(data_pay); 
-                    console.log(serializ);
-                    // var urlenpost= this.common.base_url  + 'payment/paymentgateway';    
-                     this.http.post(this.common.base_url +'payment/paymentgateway',serializ, optionss).map(res=>res.json()).subscribe(dataa=>{
-                      //  alert("suceess");
-                      //  alert(JSON.stringify(dataa));
-                       this.cary=dataa.data;
-                    
-                        //  alert(JSON.stringify(this.cary));
-                      this.Loading.dismiss();
-                      let toast = this.toastCtrl.create({
-                        message: 'Payment Succefully Completed',
-                        duration: 3000,
-                        position: 'middle'
-                      });
-                       toast.present();
-                                          //  alert(JSON.parse(ids));
-                      this.navCtrl.push(ConfirmPage);                    
-                                        },err=>{
-                                          alert('err');
-                                          alert(err);
-                                          alert(JSON.stringify(err));
-                                        })
-                                      
-                                   
-        
-             
-      
-            // this.navCtrl.push(ConfirmPage)
-    }else{
-// alert("else");
+      localStorage.setItem('TRANSID', obj.id);
+      localStorage.setItem('TRANSTS', obj.status);
+      localStorage.setItem('TRANSIPLAN',this.plan);
+      localStorage.setItem('TRANSPRICE', this.plan_p);
+       this.navCtrl.push(ConfirmPage);
+
     }
 
-//  var redirect_uri = e.url.split('cess');
-//       alert("bhumika"+redirect_uri);
-
-
-//       if (redirect_uri[0] == 'http://rakesh.crystalbiltech.com/braintree/public_html/checkout.php') {
-
-//         browser.close();
-       
-//         this.navCtrl.push(ConfirmPage)
-//           alert("close");
-//       }else{
-// alert("else");
-//       }
-//       // alert("check")
-//       //  this.navCtrl.push(ConfirmPage)
-    }, err => {
-
-      // alert(err)
     });
      
  }
  
 }
-
-// payment(data) {
-//   this.des = data.value.des;
-//   // this.amount = parseFloat(this.extra_add_amount)+parseFloat(data.value.amount);
-//   this.amount =parseFloat(data.value.amount);
-//   console.log(this.amount);
-//   let target = "_blank";
-//   var options = 'location=no';
-//   let browser = this.theInAppBrowser.create(this.payfort + "?requestid=" + this.re_id + "&description=" + this.des + "&myid=" + this.user_id + "&amount=" + this.amount + "&email=" + this.user_email + "&getuserid=" + this.User, target, options);
-//   browser.on('loadstart').subscribe((event) => {
-//     if (event.url.match('status')) {
-//       browser.close();
-//       let data = event.url.split("?"); 
-//       let obj = {
-//         msg: '',
-//         status: '',
-//       };
-//       for (let key in data) {
-//         let myvala = data[key].split("&");
-//         for (let key1 in myvala) {
-//           obj[myvala[key1].split("=")[0]] = myvala[key1].split("=")[1];
-//         }
-//       }
-//       // alert(JSON.stringify(obj));
-//       this.display_msg = JSON.stringify(obj.msg);
-//     //  alert("bhumika")
-//     //  alert(this.display_msg);
-//       this.show_msg=decodeURIComponent(this.display_msg)
-//       //var res = this.display_msg.replace("%20", " ");
-//      // this.show_msg = this.display_msg.replace("%20", " ");
-//         //  alert(this.show_msg);
-//       let alert = this.alertCtrl.create({
-//        // title: '<div style="text-align:center" class="ops">Oops</div>',
-//         subTitle: '<div style="text-align:center" class="psswrd">' + this.show_msg + '</div>',
-//         buttons: ['Dismiss']
-//       });
-//       alert.present();
-//       this.dismiss();
-//     } else {
-//       //      alert("bhumika")
-//     }
-//   })
-// }

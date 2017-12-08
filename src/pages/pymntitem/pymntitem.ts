@@ -159,7 +159,7 @@ serializeObj(obj) {
 // alert('userid'+user)
     var target = "_blank";
     var options = "location=no,hidden=no";
-    var browser = this.iab.create('http://rakesh.crystalbiltech.com/braintree/public_html/?data='+encodeURIComponent(this.amount)+'&planid='+ encodeURIComponent(this.plan)+'&userid=' + encodeURIComponent(user) + '&planname=' + encodeURIComponent(this.planname), target, options);
+    var browser = this.iab.create('http://rakesh.crystalbiltech.com/braintree/public_html/?amount='+encodeURIComponent(this.amount)+'&planid='+ encodeURIComponent(this.plan)+'&userid=' + encodeURIComponent(user) + '&planname=' + encodeURIComponent(this.planname) + '&item_name=' + encodeURIComponent(price.mov_name), target, options);
       // alert(JSON.stringify(browser));
     browser.on('loadstart').subscribe((e) => {
 //  alert(JSON.stringify(e));
@@ -249,6 +249,100 @@ var optionss = this.common.options;
     });
 
  } 
+ bitcoin(){
+//     alert('bitcoin');
+     
+ var price =JSON.parse(localStorage.getItem("PARSALDATA"));
+   this.amount = price.movie_price * price.quantity ;
+   
+    var user = localStorage.getItem("USERID");
+
+  var target = "_blank";
+    var options = "location=no,hidden=no";
+    let browser = this.iab.create('http://rakesh.crystalbiltech.com/bitcoin/?amount='+encodeURIComponent(this.amount)+'&custom='+ encodeURIComponent(price.mov_id)+'&userid=' + encodeURIComponent(user) + '&item_name=' + encodeURIComponent(price.mov_name), target, options);
+   
+    browser.on('loadstart').subscribe((e) => {
+//        alert(e.url)
+ if (e.url.match('status')) {
+      browser.close()
+//        alert(e.url)
+//            alert("close");
+            let data = e.url.split("?"); 
+      let obj = {
+        id: '',
+        status: '',
+      };
+      for (let key in data) {
+        let myvala = data[key].split("&");
+        for (let key1 in myvala) {
+          obj[myvala[key1].split("=")[0]] = myvala[key1].split("=")[1];
+        }
+      };
+       alert(JSON.stringify(obj));
+     console.log(this.common.options);
+var optionss = this.common.options;
+                   
+                                  var data_pay = {
+                                    userid:user,
+                                    transactionid : obj.id,
+                                    price :  this.plan_p,
+                                    planid :  this.plan,
+                                    planname:this.planname,
+                                    paymentmethod : 'braintree',
+                                    status:obj.status,
+                                    movie_id:price.mov_id,
+                                    movie_name:price.mov_name,
+                                    movie_price:price.movie_price,
+                                    quantity:price.quantity,
+                                    b_name:price.name,
+                                    b_phone:price.phone,
+                                    b_address:price.address,
+                                    b_city:price.city,
+                                    b_state:price.state,
+                                    b_country:price.country,
+                                    b_zip:price.zipcode,
+                                    s_name:price.s_name,
+                                    s_phone:price.sphone,
+                                    s_address:price.saddress,
+                                    s_city:price.scity,
+                                    s_state:price.sstate,
+                                    s_country:price.scountry,
+                                    s_zip:price.szipcode
+                                  } 
+                                  //  alert(JSON.stringify(data_pay));
+                    var serializ = this.serializeObj(data_pay); 
+                    console.log(serializ);
+                    // var urlenpost= this.common.base_url  + 'payment/paymentgateway';    
+                     this.http.post(this.common.base_url +'buynow',serializ, optionss).map(res=>res.json()).subscribe(dataa=>{
+                      //  alert("suceess");
+                      //  alert(JSON.stringify(dataa));
+                       this.cary=dataa.data;
+                      //  localStorage.setItem('SUCESS',dataa.data);
+                      //    alert(JSON.stringify(this.cary));
+                      this.Loading.dismiss();
+                      let toast = this.toastCtrl.create({
+                        message: 'Payment Succefully Completed',
+                        duration: 3000,
+                        position: 'middle'
+                      });
+                       toast.present();
+                                          //  alert(JSON.parse(ids));
+                      this.navCtrl.push(BuynowlistingPage);                    
+                                        },err=>{
+                                          alert('err');
+                                          alert(err);
+                                          alert(JSON.stringify(err));
+                                        })
+    }else{
+// alert("else");
+    }
+    }, err => {
+
+      // alert(err)
+    });
+     
+ }
  
+
 }
 

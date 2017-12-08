@@ -12,12 +12,7 @@ page-moviesdetails {
     margin-left: 20px;}
    
  
-   .trailer{  
-         position: relative;
-    width: auto;
-    height: 200px;
-    overflow: initial; box-shadow:0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);-webkit-box-shadow:0;}
-
+.card-ios { width: 100% }
    h1{    font-size: 15px;
         // margin-left: 17px;
          color:#121111; 
@@ -50,15 +45,7 @@ h3{
     border-bottom: 1px solid #e3dcef;
 }
 
-.trailerimg {
-    position: absolute;
-    height: 100%;
-    min-height: 200px;
-    top: 6px;
-    left: 0px;
-    right: 0;
-    height: 200px;
-}
+/*.trailerimg {  position: absolute;  height: 100%;  min-height: 250px; top: 6px; left: 0px; right: 0; height: 200px;}*/
 
 div {
     position: relative;
@@ -187,10 +174,8 @@ ion-slides {
 .toolbar-title.toolbar-title-md {
     margin-left: 22px;
 }
-.scroll-content{
-    margin-top: 45px !important;
-    margin-left: 0;
-}
+/*.scroll-content{    margin-top: 45px !important;    margin-left: 0;}*/
+
   .trailerbtn{
     margin-top: -8px;
     margin-left: -6px;
@@ -239,6 +224,12 @@ span{
 
 .button-inner {
     padding-right: 5px;
+}
+
+/*----12/7/17---------*/
+
+.time {
+    text-align: left;
 }
 }
 

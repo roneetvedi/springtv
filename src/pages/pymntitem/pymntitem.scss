@@ -30,4 +30,20 @@ img{border-radius: 50%;
     text-overflow: inherit;
     color: #bdb8b8;
     margin-top: -3px;}}
+.mthd {
+    width: 42px;
+    height: 42px;
+    background-color: #251d6d;
+    border-radius: 100%;
+    position: relative;
+    overflow:hidden;
 }
+    
+    .icon{ 
+    position: absolute;
+    top: 9px;
+    left: 14px;
+    font-size: 24px;
+}
+}
+

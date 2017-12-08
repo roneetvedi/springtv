@@ -119,6 +119,6 @@ serializeObj(obj) {
 //   }
    account()
  {
-  this.navCtrl.push(AccountPage);
+   this.app.getRootNav().setRoot(AccountPage);
  } 
 }

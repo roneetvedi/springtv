@@ -1,21 +1,20 @@
 <ion-header>
  <ion-toolbar color="blue">
   <ion-title>{{dataiil.title}}</ion-title> 
-        <button  class="backbtn" (click)="movies()">
+        <button class="backbtn" (click)="movies()">
             <ion-icon class="customIcon" name="arrow-back"></ion-icon>
         </button>
     <!-- <ion-title>Serials Details</ion-title>   -->
    </ion-toolbar>                         
     </ion-header> 
-<ion-content>
+<ion-content [attr.noScroll]="shouldScroll">
 
   <ion-card class="trailer" no-margin>
 
   <div class="trailerimg no-margin">
 
- <video width="340" height="200" controls src="{{dataiil.video}}">
-                              Your browser does not support the video tag.
-                        </video>
+ <!--<video width="340" height="200" controls src="{{dataiil.video}}">                              Your browser does not support the video tag.                        </video>-->
+      <video width="100%" controls src="{{dataiil.video}}" type="video/mp4" autoplay></video> 
  
  </div>
  <!-- <div class="videoicon">
@@ -38,13 +37,13 @@
      <ul class="likes">
 
 
-    <li ><img (click)="likes()"  src="assets/img/like.png" width="22"/>
+    <li><img (click)="likes()"  src="assets/img/like.png" width="22"/>
       <!-- <img  *ngIf="this.lykval==0" src="assets/img/elike.png" width="22"/>
        <img  *ngIf="this.lykval==2" src="assets/img/elike.png" width="22"/> -->
     </li>
          <li>{{this.lykval}}</li>
     <li>
-      <img   (click)="likes()" src="assets/img/unlike.png" width="22"/>
+      <img (click)="likes()" src="assets/img/unlike.png" width="22"/>
       <!-- <img *ngIf="this.lykval==1" src="assets/img/eunlike.png" width="22"/>
       <img *ngIf="this.lykval==2" src="assets/img/eunlike.png" width="22"/> -->
     </li>

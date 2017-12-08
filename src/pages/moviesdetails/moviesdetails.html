@@ -16,10 +16,9 @@
 
   <div class="trailerimg no-margin">
 
- <video style="min-width:100%; max-width:40%; height:200px" controls src="{{actormovie.trailer}}">
-                              Your browser does not support the video tag.
-                        </video>
-  <button  class="backbtn" (click)="movies()">
+ <!--<video style="min-width:100%; max-width:40%; height:200px" controls src="{{actormovie.trailer}}">    Your browser does not support the video tag.               </video>-->
+   <video width="100%" controls src="{{actormovie.trailer}}" type="video/mp4"></video>
+ <button  class="backbtn" (click)="movies()">
             <ion-icon class="customIcon" name="arrow-back"></ion-icon>
         </button>
  </div>
@@ -50,7 +49,7 @@
   <ion-col col-4 no-padding>
     <button class="buy-butn" ion-button round (click)="buynow(this.actorid,this.actorname,this.actorthumb)" >Buy now</button>
   </ion-col></ion-row></ion-grid> 
-  <div><ion-icon name="time" class="watch" ></ion-icon><h5>{{actormovie.movie_duration}}</h5></div>
+  <div class="time"><ion-icon name="time" class="watch" ></ion-icon><h5>{{actormovie.movie_duration}}</h5></div>
 <div>
    <p>{{actormovie.description}}</p></div>
 <div class="actr">

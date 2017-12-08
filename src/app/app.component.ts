@@ -1,6 +1,6 @@
 
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform ,MenuController} from 'ionic-angular';
+import { Nav, Platform ,MenuController,AlertController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -50,7 +50,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform,private menu: MenuController, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform,private menu: MenuController, public statusBar: StatusBar,public alertCtrl: AlertController, public splashScreen: SplashScreen) {
     this.initializeApp();
     this.menu.swipeEnable(false, 'menu1');
     // used for an example of ngFor and navigation
@@ -83,6 +83,7 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
  showConfirm() {
+     
     let confirm = this.alertCtrl.create({
        title: '<div style="text-align:center" class="ops">Exit?</div>',
        message: 'Do you want to exit the app?',
@@ -98,6 +99,7 @@ export class MyApp {
           handler: () => {
             console.log('Agree clicked');
              navigator['app'].exitApp(); 
+             
           }
         }
       ]

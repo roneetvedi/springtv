@@ -24,6 +24,11 @@ color: #fff;
     width: 100%;
     }
    .user{color:#fff;
+          width: 90%;
+              margin: auto;
+              display: block;
+              text-align: center;
+               
   }
 
 .card{    margin: 0;
@@ -46,7 +51,7 @@ color: #fff;
 	padding: 0;
 
 }
-.serials-pg .scroll-content {margin-top: 137px !important;}
+
 
 
 // -----------13/11/2017-------------
@@ -68,6 +73,16 @@ p{text-align:center;
       font-weight: bold;
        color:white;
     }
+    
+/*    -----------12/7/17------------*/
+.srlbtn{
+background-color:#393185;
+width: 96%;
+margin-top: 13px;
+margin-left: 6px;
+border-radius: 3px;
+margin-bottom: 13px;
+}
 }
 
 

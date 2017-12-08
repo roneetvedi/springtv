@@ -130,7 +130,7 @@ movies(){
 }
 
     download() {
-      // alert('downloading');
+       alert('downloading');
       
         var data={
         epiormovid:this.srltt
@@ -143,13 +143,14 @@ var optionss = this.common.options;
 
      this.http.post(this.common.base_url +'downloads/downloadfile', Serialized, optionss).map(res=>res.json()).subscribe(datatt=>{
   
-      console.log(datatt.allseason);
+      console.log("data"+datatt);
       if(datatt.error == 0){
-          this.downmov=datatt.allseason[0].video;
-        console.log(this.downmov);
+          alert("in");
+          this.downepi=datatt.data.video;
+        console.log(this.downepi);
            this.platform.ready().then(() => {
-      open(this.downmov, "_system");
-      console.log(this.datvid);
+      open(this.downepi, "_system");
+//      console.log(this.datvid);
            })}else{
  let toast = this.toastCtrl.create({
                   message: "couldn't download",

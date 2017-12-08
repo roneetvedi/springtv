@@ -97,8 +97,8 @@ serialssubscribe(sid,dis,dat,tad)
 
 serials()
  {
-   this.navCtrl.push(SerialsPage);
-  // this.app.getRootNav().setRoot(SerialsPage);
+//   this.navCtrl.push(SerialsPage);
+   this.app.getRootNav().setRoot(SerialsPage);
  } 
 
 //  playVideo(){this.video = document.getElementById("myVideo");

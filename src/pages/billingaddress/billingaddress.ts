@@ -34,8 +34,8 @@ export class BillingaddressPage {
      console.log(this.mov_thumb);
   }
     buylocal(buy){
-      alert('local storage');
-      alert(this.mov_id);
+//      alert('local storage');
+//      alert(this.mov_id);
       var datay1 = {
                 movie_id:this.mov_id,
                 movie_name:this.mov_name,
@@ -64,7 +64,7 @@ export class BillingaddressPage {
 
    buynowdata(buy){
   
-    alert('buynow');
+//    alert('buynow');
 
             var datay1 = {
                 movie_id:this.mov_id,

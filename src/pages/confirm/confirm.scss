@@ -1,12 +1,27 @@
 page-confirm {
-.back-button{color:#fff;}
+.back-button{color:#fff;
+ background-color: transparent;
+}
 	.toolbar-background{background-color:#251d6d;}
      h5{color:#fff;
             font-size:15px;
-            font-weight: 300;}
+            font-weight: 300;
+     }
+     
+     button.backbtn {
+         color:#fff;
+    background-color: transparent;
+}
+/*     .button{
+         background-color: transparent;
+     }*/
 .methods {
-	ion-list{    margin: -16px;
-    padding-top: 6px;
+    background: url("../assets/img/banner3-bg.jpg") ;
+        background-size: cover;
+        
+	ion-list{  
+/*            margin: -16px;*/
+    padding-top: 16px;
     padding-bottom: 12px;
     display: block;
     list-style-type: none;
@@ -16,26 +31,41 @@ page-confirm {
           h5{color:#fff;
             font-size:15px;
             font-weight: 300;}
+          
+.item-cnfrm{
+    margin-top: 5px;
+    margin-left: 3px;
+    padding-right:3px;
 
+}
 
-img{    border-radius: 50%;
+img{   
+    border-radius: 50%;
     overflow: hidden;
     width: 40px;
     height: 50px;
-  
     padding-bottom: 13px;
    }
-    h2{    margin: 2px 0;
+   
+    h2{  
+    margin: 2px 6px;
     font-size: 17px;
     font-weight: 500;
-    display: inline-block;}
-    h3{text-align: right;
+    display: inline-block;
+    padding: 4px 0;
+    }
+    
+    h3{
+        text-align: right;
     margin-top: -21px;
     color: #ff2300;
     font-size: 17px;
     font-weight: 500;
-    line-height: normal;}
-    h6{    margin: 2px 0;
+    line-height: normal;
+    }
+    
+    h6{  
+        margin: 2px 0;
     font-size: 14px;
     font-weight: 100;
     line-height: normal;}
@@ -58,4 +88,8 @@ img{    border-radius: 50%;
     background-color: #251d6d;
     text-transform: none;}
 }
+
+
+
+
 }
