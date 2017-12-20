@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {CommonProvider} from '../../providers/common/common';
@@ -39,12 +40,26 @@ export class MoviesdetailsPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,public http:Http,
-    public common : CommonProvider,public app:App) 
-  
-    {
-     this.move=this.navParams.get('movie_id')
+    public common : CommonProvider,public app:App, public menu: MenuController) {
+    this.menu.swipeEnable(false);
+        this.common.video = document.getElementsByTagName('video');
+      console.log(this.common.video);
+             if(this.common.video!=null){
+          for(var i=0;i<this.common.video.length;i++){
+            console.log(this.common.video[i]);
+            this.common.video[i].pause();
+            
+        };
+    this.move=this.navParams.get('movie_id');
         this.getlikes();
      this.tabBarElement=document.querySelector('.tabbar.show-tabbar');
+        }else{
+           this.move=this.navParams.get('movie_id');
+            this.getlikes();
+     this.tabBarElement=document.querySelector('.tabbar.show-tabbar');
+        }
+   
+    
   }
 ionViewWillEnter(){
   this.tabBarElement.style.display = 'none';

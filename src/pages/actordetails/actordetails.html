@@ -80,10 +80,12 @@
 <!-- <div class="photossalon"> -->
 <ion-grid class="gly">
 <ion-row>
-<ion-col col-4 no-padding   >
-<div class="gallery1"*ngFor="let actors of actormov" >
-<img (click)="details()" src="{{actors.movie_thumb}}">
+<ion-col col-4 no-padding *ngFor="let actors of actormov" >
+    <div class="glr_cvr">
+<div class="gallery1"  >
+<img (click)="details(actors.movie_id)" src="{{actors.movie_thumb}}">
 </div>
+    </div>
 </ion-col>
 <!-- <ion-col col-4 no-padding>
 <div class="gallery1">

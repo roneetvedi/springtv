@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 
 
 import { HomePage } from '../home/home';
@@ -17,7 +18,8 @@ import { HomePage } from '../home/home';
 })
 export class LinksPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public menu: MenuController) {
+    this.menu.swipeEnable(false);
 
   }
 

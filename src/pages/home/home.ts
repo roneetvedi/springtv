@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
+import { MenuController } from 'ionic-angular';
 import { SigninPage } from '../signin/signin';
 import { SignupPage } from '../signup/signup';
 
@@ -16,7 +16,8 @@ import { TabsPage } from '../tabs/tabs';
 export class HomePage {
   User: string;
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public menu: MenuController) {
+    this.menu.swipeEnable(false);
         if(localStorage.getItem('USERID') != null){
           this.navCtrl.push(TabsPage);
         }

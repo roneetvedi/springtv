@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -37,7 +38,8 @@ export class FiltersPage {
   });
   constructor(public navCtrl: NavController, public modalCtrl: ModalController,public navParams: NavParams,
         public http:Http,public loadingCtrl:LoadingController,
-        public common : CommonProvider) {
+        public common : CommonProvider, public menu: MenuController) {
+    this.menu.swipeEnable(false);
           this.moviecat();
 
   }
@@ -57,7 +59,7 @@ moviecat(){
          this.subcatids=this.navParams.get('subcatid');
         console.log(this.subcatids);
         if(this.subcatids == undefined){
-  alert('movie by category');
+//  alert('movie by category');
    var datayy1 = {
       cat_id:this.catids
     }
@@ -80,7 +82,7 @@ this.http.post(this.common.base_url +'videos/moviebycatid',Serialized,option).ma
     }
   })
         }else{
-           alert('movie by category');
+//           alert('movie by category');
    var data1 = {
       subcatid:this.subcatids
     }

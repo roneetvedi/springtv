@@ -52,7 +52,7 @@
 <ion-row *ngFor="let showdata of traildata" >
 <ion-col col-12 no-padding >
 <div class="gallery1" >
-   <video  controls src="{{showdata.trailer}}"> Your browser does not support the video tag</video>
+   <video controls="controls" controlsList="nodownload" id="showdata_{{showdata._id}}"  preload="none" onclick="this.play()" src="{{showdata.trailer}}"> Your browser does not support the video tag</video>
 </div>
 </ion-col>
 </ion-row>

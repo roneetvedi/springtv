@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController,Events, NavParams,App } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {CommonProvider} from '../../providers/common/common';
@@ -40,7 +41,8 @@ export class LogoutPage {
   constructor(public navCtrl: NavController,public events:Events,
     public navParams: NavParams,public http:Http,
     public common : CommonProvider,
-     private camera: Camera, private toastCtrl: ToastController,public actionSheetCtrl: ActionSheetController, public loadingCtrl:LoadingController,public app: App) {
+     private camera: Camera, private toastCtrl: ToastController,public actionSheetCtrl: ActionSheetController, public loadingCtrl:LoadingController,public app: App, public menu: MenuController) {
+    this.menu.swipeEnable(false);
            this.User = localStorage.getItem("USERID");
            this.fb_user = localStorage.getItem("FBID");
            console.log(this.fb_user);

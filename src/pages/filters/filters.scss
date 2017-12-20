@@ -12,8 +12,15 @@ h1::before, h1::after {
 }
 .bar-buttons{
     padding-top: 0px;}
-.icon{    font-size: 35px;
-line-height:1.5;}
+
+.customIcon{
+    font-size:30px !important;
+}
+.icon{  
+/*    font-size: 35px;*/
+    font-size: 35px;
+line-height:1.5;
+}
 .toolbar-title {
     display: block;
     overflow: hidden;

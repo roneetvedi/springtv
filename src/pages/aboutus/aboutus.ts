@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
  import 'rxjs/add/operator/map';
 import {CommonProvider} from '../../providers/common/common';
@@ -12,12 +13,13 @@ export class AboutusPage {
  public head= '';
   public descrip = '';
 
-  constructor(public navCtrl: NavController,public http:Http, public common : CommonProvider) {
+  constructor(public navCtrl: NavController,public http:Http, public common : CommonProvider, public menu: MenuController) {
+    this.menu.swipeEnable(false);
  this.listing();
   }
 
   listing(){
-    alert('about us');
+//    alert('about us');
  console.log(this.common.options);
 var optionss = this.common.options;
  this.http.get(this.common.base_url +'pages/pagelist', optionss).map(res=>res.json()).subscribe(data=>{

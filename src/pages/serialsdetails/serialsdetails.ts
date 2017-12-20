@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,App } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {CommonProvider} from '../../providers/common/common';
@@ -41,7 +42,8 @@ public Loading = this.loadingCtrl.create({
   });
   constructor(public navCtrl: NavController,
     public navParams: NavParams,public http:Http,
-    public common : CommonProvider,public loadingCtrl:LoadingController,public app: App,public toastCtrl:ToastController) {
+    public common : CommonProvider,public loadingCtrl:LoadingController,public app: App,public toastCtrl:ToastController, public menu: MenuController) {
+    this.menu.swipeEnable(false);
     this.sreal=this.navParams.get('serial_id')
     this.fectch();
     this.fectchseason();

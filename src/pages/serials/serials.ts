@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,App } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
+import { Events } from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {CommonProvider} from '../../providers/common/common';
@@ -39,15 +41,30 @@ public Loading = this.loadingCtrl.create({
     
   });
   constructor(public navCtrl: NavController,
-				public navParams: NavParams,
+				public navParams: NavParams, public events:Events,
         public http:Http,public loadingCtrl:LoadingController,
-        public common : CommonProvider,public app:App) {
-   this.user= localStorage.getItem('USER_EMAIL');
-   console.log(this.user);
+        public common : CommonProvider,public app:App, public menu: MenuController) {
+    this.menu.swipeEnable(false);
+  if(this.common.video!=null){
+          for(var i=0;i<this.common.video.length;i++){
+            console.log(this.common.video[i]);
+            this.common.video[i].pause();
+            
+        };
+         this.user= localStorage.getItem('USER_EMAIL');
+             console.log(this.user);
          // this.listing();
-         this.check()
-    this.randno=localStorage.getItem('RANDOM');
+         this.check();
+              this.randno=localStorage.getItem('RANDOM');
+       console.log(this.randno);
+        }else{
+            this.user= localStorage.getItem('USER_EMAIL');
+             console.log(this.user);
+         // this.listing();
+         this.check();
+           this.randno=localStorage.getItem('RANDOM');
     console.log(this.randno);
+        }
   }
 
 
@@ -67,8 +84,8 @@ this.http.post(this.common.base_url +'users_login_check',Serialized,option).map(
   console.log(data);
     this.serials = data;
     this.check_value=data.user
-      console.log(this.randno);
-         console.log( this.check_value);
+//    alert(JSON.stringify(this.randno)); 
+//         alert(JSON.stringify(this.check_value));
    if(this.randno==this.check_value)
      {
         this.Loading.dismiss();
@@ -170,5 +187,35 @@ serializeObj(obj) {
 
     return result.join("&");
   }
+  ionViewDidLoad(){
+      
+       this.events.subscribe('tab-t0-0', (data)=>{
+    console.log(data);
+      console.log(this.navCtrl.canGoBack())
+//      if(this.navCtrl.canGoBack() == true){
+//        this.navCtrl.popToRoot()
+//      } 
+      for(var i=0;i<this.common.video.length;i++){
+            console.log(this.common.video[i]);
+            this.common.video[i].pause();  
+             this.check();
+
+            
+        };
+       
+       //alert('working')
+     })
+  }
+//  tabchange(){
+//this.events.subscribe('tab-t0-1', (data)=>{
+//    console.log(data);
+//      console.log(this.navCtrl.canGoBack())
+//      if(this.navCtrl.canGoBack() == true){
+//        this.navCtrl.popToRoot()
+//      } 
+//       this.check();
+//       //alert('working')
+//     })
+//}
 }
 

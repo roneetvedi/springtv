@@ -12,6 +12,7 @@ import {LoadingController} from 'ionic-angular';
 export class CommonProvider {
   options: RequestOptions;
   base_url: string;
+  video:any;
   /* serialise form*/
 public serializeObj(obj) {
  var result = [];
@@ -31,7 +32,7 @@ return result.join("&");
 headers.append('Content-Type',  'application/x-www-form-urlencoded;charset=utf-8');
 this.options= new RequestOptions({ headers: headers });
  
- this.base_url = "http://spring-env-1.us-east-2.elasticbeanstalk.com/api/";
+ this.base_url = "http://springtv.it/api/";
 }
 
 }

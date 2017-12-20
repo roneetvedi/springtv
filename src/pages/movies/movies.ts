@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
+import { Events } from 'ionic-angular';
 import { ModalController } from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -21,6 +23,9 @@ import { SigninPage } from "../signin/signin";
   templateUrl: 'movies.html'
 })
 export class MoviesPage {
+    loadGetService(): any {
+        throw new Error("Method not implemented.");
+    }
   check_value: any;
   serials: any;
   randno: string;
@@ -35,15 +40,38 @@ export class MoviesPage {
     content: 'Please wait...'
     
   });
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController,public navParams: NavParams,
+  constructor(public navCtrl: NavController, public events: Events,public modalCtrl: ModalController,public navParams: NavParams,
         public http:Http,public loadingCtrl:LoadingController,
-        public common : CommonProvider,public app:App) {
+        public common : CommonProvider,public app:App, public menu: MenuController) {
+    this.menu.swipeEnable(false);
+        console.log(this.common.video);
+//        this.common.video.forEach(function(key,value){
+//            console.log(key);
+//            console.log(value);
+//        })
+        if(this.common.video!=null){
+          for(var i=0;i<this.common.video.length;i++){
+            console.log(this.common.video[i]);
+            this.common.video[i].pause();
+            
+        };
+         this.user= localStorage.getItem('USER_EMAIL');
+             console.log(this.user);
+         // this.listing();
+         this.check();
+              this.randno=localStorage.getItem('RANDOM');
+       console.log(this.randno);
+        }else{
             this.user= localStorage.getItem('USER_EMAIL');
              console.log(this.user);
          // this.listing();
-         this.check()
-    this.randno=localStorage.getItem('RANDOM');
+         this.check();
+           this.randno=localStorage.getItem('RANDOM');
     console.log(this.randno);
+        }
+            
+         
+  
   }
    check(){
   this.Loading.present();
@@ -169,5 +197,21 @@ moviesdetails(ids)
  {
  this.app.getRootNav().setRoot(AccountPage);
  } 
+  ionViewDidLoad(){      
+this.events.subscribe('tab-t0-1', (data)=>{
+   
+      console.log(this.navCtrl.canGoBack())
+//      if(this.navCtrl.canGoBack() == true){
+//        this.navCtrl.popToRoot()
+//      } 
+     for(var i=0;i<this.common.video.length;i++){
+            console.log(this.common.video[i]);
+            this.common.video[i].pause();
+               this.check();
+        };
+    
+       //alert('working')
+     })
 }
 
+}

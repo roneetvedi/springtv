@@ -2,10 +2,14 @@ page-confirm {
 .back-button{color:#fff;
  background-color: transparent;
 }
+
+.back-button:hover:not(.disable-hover) {
+    color: #fff;
+}
 	.toolbar-background{background-color:#251d6d;}
      h5{color:#fff;
-            font-size:15px;
-            font-weight: 300;
+            font-size:18px;
+            font-weight: 500;
      }
      
      button.backbtn {

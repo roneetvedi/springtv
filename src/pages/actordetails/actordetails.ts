@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ActorsgalleryPage } from "../actorsgallery/actorsgallery";
+import { MenuController } from 'ionic-angular';
+import { TabsPage } from '../tabs/tabs';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {CommonProvider} from '../../providers/common/common';
 import {LoadingController} from 'ionic-angular';
-
+import { MoviesdetailsPage } from '../moviesdetails/moviesdetails';
 @Component({
   selector: 'page-actordetails',
   templateUrl: 'actordetails.html'
@@ -22,7 +23,9 @@ public Loading = this.loadingCtrl.create({
   });
   constructor(public navCtrl: NavController,public navParams: NavParams,
         public http:Http,public loadingCtrl:LoadingController,
-        public common : CommonProvider) {
+        public common : CommonProvider, public menu: MenuController) {
+    this.menu.swipeEnable(false);
+//        alert('working')
           this.actorid=this.navParams.get('actor_id');
            this.actorsname=this.navParams.get('actor_name');
           console.log(this.actorid);
@@ -35,7 +38,7 @@ public Loading = this.loadingCtrl.create({
  //  this.navCtrl.push(SearchdestinationPage);
  // }
 back(){
-   this.navCtrl.push(ActorsgalleryPage);
+   this.navCtrl.push(TabsPage);
 }
 
 // actdetail(){
@@ -66,7 +69,7 @@ back(){
 //   })
 //  }
 actormovies(){
-   alert('list is comming');
+//   alert('list is comming');
    var data={
      name:this.actorsname
    }
@@ -97,5 +100,10 @@ serializeObj(obj) {
       result.push(encodeURIComponent(property) + "=" + encodeURIComponent(obj[property]));
 
     return result.join("&");
+  }
+  details(ids){
+//      alert('detailing');
+//      alert('ids');
+      this.navCtrl.push(MoviesdetailsPage,{movie_id:ids}); 
   }
 }

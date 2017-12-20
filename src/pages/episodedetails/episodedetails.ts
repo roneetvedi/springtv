@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,App } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {CommonProvider} from '../../providers/common/common';
@@ -7,6 +8,7 @@ import { SerialssubscribePage } from '../serialssubscribe/serialssubscribe';
 import { SerialsPage } from '../serials/serials';
 import { SubscribePage } from '../subscribe/subscribe';
 import { NativeStorage } from '@ionic-native/native-storage';
+import {TabsPage} from '../tabs/tabs';
 
 /**
  * Generated class for the SerialsdetailsPage page.
@@ -28,8 +30,17 @@ export class EpisodedetailsPage {
   
   constructor(public navCtrl: NavController,
     public navParams: NavParams,public http:Http,
-    public common : CommonProvider,public app: App,public nativeStorage: NativeStorage) {
-    this.srl=this.navParams.get('season_id')
+    public common : CommonProvider,public app: App,public nativeStorage: NativeStorage, public menu: MenuController) {
+    this.menu.swipeEnable(false);
+     this.common.video = document.getElementsByTagName('video');
+      console.log(this.common.video);
+             if(this.common.video!=null){
+          for(var i=0;i<this.common.video.length;i++){
+            console.log(this.common.video[i]);
+            this.common.video[i].pause();
+            
+        };
+         this.srl=this.navParams.get('season_id')
      this.srlt=this.navParams.get('serial_id')
      this.srltt=this.navParams.get('episode_id')
     this.user=localStorage.getItem("USERID");
@@ -39,6 +50,19 @@ export class EpisodedetailsPage {
      
    this.fetchseaepi();
     this.tabBarElement=document.querySelector('.tabbar.show-tabbar');
+        }else{
+            this.srl=this.navParams.get('season_id')
+     this.srlt=this.navParams.get('serial_id')
+     this.srltt=this.navParams.get('episode_id')
+    this.user=localStorage.getItem("USERID");
+    console.log(this.srl);
+    console.log(this.srlt);
+     console.log(this.srltt);
+     
+   this.fetchseaepi();
+    this.tabBarElement=document.querySelector('.tabbar.show-tabbar');
+        }
+   
   }
  ionViewWillEnter(){
   this.tabBarElement.style.display = 'none';
@@ -98,7 +122,7 @@ serialssubscribe(sid,dis,dat,tad)
 serials()
  {
 //   this.navCtrl.push(SerialsPage);
-   this.app.getRootNav().setRoot(SerialsPage);
+   this.app.getRootNav().setRoot(TabsPage);
  } 
 
 //  playVideo(){this.video = document.getElementById("myVideo");

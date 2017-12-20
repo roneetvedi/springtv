@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MenuController } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 
@@ -16,7 +17,8 @@ import { HomePage } from '../home/home';
 })
 export class CarddetailPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public menu: MenuController) {
+    this.menu.swipeEnable(false);
 
   }
 home()

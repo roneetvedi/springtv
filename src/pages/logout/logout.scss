@@ -1,12 +1,26 @@
 page-logout {
       .ion-pg{
-        .back-button{color:#fff;}
+        .backbtn {
+    background-color: transparent;
+    color: #fff;
+    font-size: 20px;
+    margin-top: 11px;
+    margin-right: 2px;
+}
 .toolbar-background{background-color:#251d6d;}
-     h5{color:#fff;
-               font-size: 16px;
-    font-weight: 400;}
+     h5{ color:#fff;
+       font-size: 18px;
+    font-weight: 500;
+    margin-top: 11px;
+    text-align: left;}
 
   }
+  
+  .ion-pg .back-button {
+    color: #fff;
+    display: none;
+}
+
 .changewrapper{
     width: 123px;
     height: 123px;

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,App } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import { SerialsPage } from '../serials/serials';
 import { SignupPage } from '../signup/signup';
 import { TabsPage } from '../tabs/tabs';
@@ -39,7 +40,8 @@ export class SigninPage {
 				public navParams: NavParams,
         public http:Http,
         public common : CommonProvider,
-        private fb: Facebook,public nativeStorage: NativeStorage, public app: App,private toastCtrl: ToastController, public loadingCtrl:LoadingController) {
+        private fb: Facebook,public nativeStorage: NativeStorage, public app: App,private toastCtrl: ToastController, public loadingCtrl:LoadingController, public menu: MenuController) {
+    this.menu.swipeEnable(false);
  
 
          
@@ -166,31 +168,37 @@ this.http.post(url, Serialized, optionss).map(res=>res.json()).subscribe(data=>{
   // alert('data');
   // alert(JSON.stringify(data));
     console.log(data);
-     localStorage.setItem('USERID',data.data._id);
-      localStorage.setItem('FBdata',data.data);
-    // this.navCtrl.push(TabsPage); 
-     this.app.getRootNav().setRoot(TabsPage);
-  //   if(data.status == true){
-  //     //alert(data.msg);
-  //     //var cus = data.cus_id;
-  //     let toast = this.toastCtrl.create({
-  //   message: data.message,
-  //   duration: 3000,
-  //   position: 'middle'
-  // });
-  //  toast.present();
-  //     localStorage.setItem('USERID',data.user.id);
-  //     this.navCtrl.push(TabsPage); 
+//     localStorage.setItem('USERID',data.data._id);
+//      localStorage.setItem('FBdata',data.data);
+//       localStorage.setItem('USER_EMAIL',data.data.email);
+//     this.navCtrl.push(TabsPage); 
+//     this.app.getRootNav().setRoot(TabsPage);
+ if(data.error == 0){
+        localStorage.setItem('USERID',data.data._id);
+      localStorage.setItem('FBID',data.data._id);
+      localStorage.setItem('RANDOM',data.data.random);
+//      alert("rand"+ JSON.stringify(data.data.random));
+       localStorage.setItem('USER_EMAIL',data.data.email);
+        this.navCtrl.push(TabsPage);
+       let toast = this.toastCtrl.create({
+     message: data.message,
+     duration: 3000,
+     position: 'middle'
+   });
+    toast.present();
+   
+      
     
-  //   }else{
-  //     //alert(data.msg)
-  //     let toast = this.toastCtrl.create({
-  //   message: data.message,
-  //   duration: 3000,
-  //   position: 'middle'
-  // });
-  //  toast.present();
-  //   }
+    
+     }else{
+       //alert(data.msg)
+       let toast = this.toastCtrl.create({
+     message: data.message,
+     duration: 3000,
+     position: 'middle'
+   });
+    toast.present();
+     }
   })
 
      

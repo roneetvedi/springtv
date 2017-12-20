@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+   import { MenuController } from 'ionic-angular';
 import { PymntplanPage } from '../pymntplan/pymntplan';
 import { FullscreenPage } from '../fullscreen/fullscreen';
 import 'rxjs/add/operator/map';
@@ -33,8 +34,15 @@ public Loading = this.loadingCtrl.create({
     
   });
 
-  constructor(public navCtrl: NavController,public navParams: NavParams,private toastCtrl: ToastController,public common:CommonProvider,public http:Http, public loadingCtrl:LoadingController) {
- this.planepi =this.navParams.get('episode_id') ;
+  constructor(public navCtrl: NavController,public navParams: NavParams,private toastCtrl: ToastController,public common:CommonProvider,public http:Http, public loadingCtrl:LoadingController, public menu: MenuController) {
+    this.menu.swipeEnable(false);
+  if(this.common.video!=null){
+          for(var i=0;i<this.common.video.length;i++){
+            console.log(this.common.video[i]);
+            this.common.video[i].pause();
+            
+        };
+    this.planepi =this.navParams.get('episode_id') ;
  this.planmov =this.navParams.get('movie_id') ;
  this.planmovname =this.navParams.get('movie_name') ;
  this.planepiname =this.navParams.get('episode_name');
@@ -49,7 +57,24 @@ public Loading = this.loadingCtrl.create({
     
     console.log(this.srl);
     console.log(this.srlt);
-     console.log(this.srltt);
+        }else{
+           this.planepi =this.navParams.get('episode_id') ;
+ this.planmov =this.navParams.get('movie_id') ;
+ this.planmovname =this.navParams.get('movie_name') ;
+ this.planepiname =this.navParams.get('episode_name');
+
+//  alert(this.planepi);
+ console.log(this.planepi);
+ console.log(this.planmov);
+ console.log(this.planmovname);
+ console.log(this.planepiname);
+  this.srl=this.navParams.get('season_id');
+     this.srlt=this.navParams.get('serial_id');
+    
+    console.log(this.srl);
+    console.log(this.srlt);
+        }
+
   }
  
 pymnt(ids,dis,sid,sam)

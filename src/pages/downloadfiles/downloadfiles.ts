@@ -2,7 +2,8 @@
 
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { MenuController } from 'ionic-angular';
+import { Events } from 'ionic-angular';
 import { AccountPage } from '../account/account';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -36,14 +37,30 @@ export class DownloadfilesPage {
     content: 'Please wait...'
     
   });
-  constructor(public navCtrl: NavController,public navParams: NavParams,
+  constructor(public navCtrl: NavController,public navParams: NavParams,public events:Events,
         public http:Http,public loadingCtrl:LoadingController,
-        public common : CommonProvider,public app:App) {
-          this.user= localStorage.getItem('USER_EMAIL');
-          console.log(this.user);
-         this.check()
-    this.randno=localStorage.getItem('RANDOM');
-    console.log(this.randno);
+        public common : CommonProvider,public app:App, public menu: MenuController) {
+    this.menu.swipeEnable(false);
+          if(this.common.video!=null){
+          for(var i=0;i<this.common.video.length;i++){
+            console.log(this.common.video[i]);
+            this.common.video[i].pause();
+            
+        };
+         this.user= localStorage.getItem('USER_EMAIL');
+             console.log(this.user);
+         // this.listing();
+         this.check();
+              this.randno=localStorage.getItem('RANDOM');
+       console.log(this.randno);
+        }else{
+            this.user= localStorage.getItem('USER_EMAIL');
+             console.log(this.user);
+         // this.listing();
+         this.check();
+              this.randno=localStorage.getItem('RANDOM');
+       console.log(this.randno);
+        }
   }
     check(){
   this.Loading.present();
@@ -138,7 +155,22 @@ setFilteredItems(){
  {
   this.app.getRootNav().setRoot(AccountPage);
  } 
-
+tabchange(){
+    alert("change")
+this.events.subscribe('tab-t0-2', (data)=>{
+      console.log(this.navCtrl.canGoBack())
+//      if(this.navCtrl.canGoBack() == true){
+//        this.navCtrl.popToRoot()
+//      } 
+     for(var i=0;i<this.common.video.length;i++){
+            console.log(this.common.video[i]);
+            this.common.video[i].pause();
+            
+        };
+       this.check();
+       //alert('working')
+     })
+}
  
 }
 

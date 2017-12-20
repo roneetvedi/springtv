@@ -22,7 +22,7 @@
     </ion-avatar>
 
     <h2>My Account</h2>
-    <p>Mobile: {{this.userphone}}</p>
+    <p *ngIf="this.userphone!= null" >Mobile: {{this.userphone}}</p>
   </ion-item>
 </ion-list>
     </ion-col>

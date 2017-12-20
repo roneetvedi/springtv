@@ -17,10 +17,10 @@
   <div class="trailerimg no-margin">
 
  <!--<video style="min-width:100%; max-width:40%; height:200px" controls src="{{actormovie.trailer}}">    Your browser does not support the video tag.               </video>-->
-   <video width="100%" controls src="{{actormovie.trailer}}" type="video/mp4"></video>
- <button  class="backbtn" (click)="movies()">
+   <video width="100%" controls controlsList="nodownload"  src="{{actormovie.trailer}}" type="video/mp4"></video>
+<!-- <button  class="backbtn" (click)="movies()">
             <ion-icon class="customIcon" name="arrow-back"></ion-icon>
-        </button>
+        </button>-->
  </div>
  <!-- <div class="videoicon">
  <img src="assets/img/videoicon.png"/>
@@ -43,8 +43,9 @@
     <ul class="likes">
     <li><img src="assets/img/like.png" width="22"/></li>
     <li>{{this.lykval}}</li>
-    <li><img src="assets/img/unlike.png" width="22"/></li>
-    <li>{{this.dlykval}}</li></ul></ion-card>
+<!--    <li><img src="assets/img/unlike.png" width="22"/></li>
+    <li>{{this.dlykval}}</li>-->
+    </ul></ion-card>
         </ion-col>
   <ion-col col-4 no-padding>
     <button class="buy-butn" ion-button round (click)="buynow(this.actorid,this.actorname,this.actorthumb)" >Buy now</button>

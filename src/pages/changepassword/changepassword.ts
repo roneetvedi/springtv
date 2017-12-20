@@ -1,5 +1,6 @@
  import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams ,App} from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import {LoadingController} from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
@@ -29,7 +30,8 @@ export class ChangepasswordPage {
    public navParams: NavParams,
    public common : CommonProvider,
    public http:Http,
-   private toastCtrl: ToastController, public loadingCtrl:LoadingController,public app:App) {
+   private toastCtrl: ToastController, public loadingCtrl:LoadingController,public app:App, public menu: MenuController) {
+    this.menu.swipeEnable(false);
   	var user_id = localStorage.getItem('USERID');
     console.log(user_id);
   }

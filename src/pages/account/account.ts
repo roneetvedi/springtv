@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,Events, MenuController,App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Events,App } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import { SubscribePage } from '../subscribe/subscribe';
 import { LogoutPage } from '../logout/logout';
 import { HomePage } from '../home/home';
@@ -36,7 +37,8 @@ public Loading=this.loadingCtrl.create({
   });
   constructor(public navCtrl: NavController,public events:Events,
                 public navParams: NavParams,private fb: Facebook,
-                public http:Http, public common : CommonProvider,public loadingCtrl:LoadingController,public app: App) {
+                public http:Http, public common : CommonProvider,public loadingCtrl:LoadingController,public app: App, public menu: MenuController) {
+    this.menu.swipeEnable(false);
 this.events.subscribe("myEvent",(data) => {
   console.log(data);
   
@@ -47,10 +49,11 @@ this.show_details();
 });
                   
   
-       console.log(localStorage.getItem("FBdata"));
-       this.contact = localStorage.getItem("FBdata");
+       console.log(localStorage.getItem("FBID"));
+       this.contact = localStorage.getItem("FBID");
+       console.log(this.contact);
 this.show_details();
-  }
+  } 
 show_details(){
 this.Loading.present();
     var User = localStorage.getItem("USERID");
@@ -111,10 +114,10 @@ movtoacc(){
   this.navCtrl.push(LogoutPage);
 }
  logut(){
-    if(    this.contact!=undefined){
+    if(this.contact!= null){
       this.fb.logout().then((sucess) => {
       localStorage.clear();
-    
+    this.app.getRootNav().setRoot(SigninPage);
     
     }).catch((error) => {
      // alert(error);

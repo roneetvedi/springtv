@@ -1,5 +1,10 @@
 page-moviesdetails {
 
+    .toolbar-title{
+    text-align: left;
+    margin-left: 52px;
+}
+
 .button{
     overflow: hidden;
     height: 47px;
@@ -230,6 +235,14 @@ span{
 
 .time {
     text-align: left;
+}
+
+
+
+/*---------12/12/17-------------*/
+.trailer.card {
+    width: 100%;
+    box-shadow: none;
 }
 }
 

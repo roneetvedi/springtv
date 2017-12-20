@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import { CarddetailPage } from '../carddetail/carddetail';
 import { PymntplanPage } from "../pymntplan/pymntplan";
 import { TabsPage } from '../tabs/tabs';
@@ -33,7 +34,8 @@ export class ConfirmPage {
   constructor(public navCtrl: NavController,public navParams:NavParams,  public common : CommonProvider,
               public http:Http,
               private toastCtrl: ToastController,
-              public loadingCtrl:LoadingController) {
+              public loadingCtrl:LoadingController, public menu: MenuController) {
+    this.menu.swipeEnable(false);
       this.paymnt();
          this.hititfirst();
       

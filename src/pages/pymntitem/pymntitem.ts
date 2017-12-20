@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import { BuynowlistingPage } from "../buynowlisting/buynowlisting";
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal';
 import {Http, Headers, RequestOptions} from '@angular/http';
@@ -45,7 +46,8 @@ export class PymntitemPage {
               private payPal:PayPal,
               public http:Http,
               private toastCtrl: ToastController,
-              public loadingCtrl:LoadingController, private iab: InAppBrowser) {
+              public loadingCtrl:LoadingController, private iab: InAppBrowser, public menu: MenuController) {
+    this.menu.swipeEnable(false);
               
 
   } 
@@ -278,7 +280,7 @@ var optionss = this.common.options;
           obj[myvala[key1].split("=")[0]] = myvala[key1].split("=")[1];
         }
       };
-       alert(JSON.stringify(obj));
+//       alert(JSON.stringify(obj));
      console.log(this.common.options);
 var optionss = this.common.options;
                    

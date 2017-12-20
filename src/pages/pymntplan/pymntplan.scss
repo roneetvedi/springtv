@@ -1,10 +1,16 @@
 page-pymntplan {
 .back-button{color:#fff;}
+.back-button:hover:not(.disable-hover) {
+    color: #fff;
+}
 	.toolbar-background{ background-color:#251d6d; }
 
-	      h6{color:#fff;
-	      	font-size:15px;
-	      	font-weight: 300;}
+	      h6 {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 0.6rem;
+}
 .plans {
 	ion-list{ margin: -15px;
 		border-bottom:1px solid #e9e9e9;}

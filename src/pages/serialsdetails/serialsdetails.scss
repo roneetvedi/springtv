@@ -9,6 +9,10 @@ page-serialsdetails {
 //     text-transform: uppercase;
 //     color: #fff;
 //     background-color: #0e086f;}
+.toolbar-title{
+    text-align: left;
+    margin-left: 52px;
+}
 
     .button{
     overflow: hidden;
@@ -29,7 +33,7 @@ page-serialsdetails {
    .trailer{  
     position: relative;
     width: auto;
-    height: 250px;
+    height: 200px;
     overflow: hidden; 
     box-shadow:0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);
     -webkit-box-shadow:0;}
@@ -43,7 +47,7 @@ page-serialsdetails {
 }
    
 h2 { 
-    margin-top: 13-1rempx;
+    margin-top: 13px;
     font-size: 14px;
     color: #171515;
   text-align: left;

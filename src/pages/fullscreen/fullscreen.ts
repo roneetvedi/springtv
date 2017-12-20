@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,App,Platform } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {CommonProvider} from '../../providers/common/common';
@@ -30,7 +31,8 @@ export class FullscreenPage {
   
   constructor(public navCtrl: NavController,
     public navParams: NavParams,public http:Http,
-    public common : CommonProvider,public app: App,public nativeStorage: NativeStorage,public platform:Platform,public toastCtrl:ToastController) {
+    public common : CommonProvider,public app: App,public nativeStorage: NativeStorage,public platform:Platform,public toastCtrl:ToastController, public menu: MenuController) {
+    this.menu.swipeEnable(false);
     this.srl=this.navParams.get('season_id');
      this.srlt=this.navParams.get('serial_id');
      this.srltt=this.navParams.get('episode_id');

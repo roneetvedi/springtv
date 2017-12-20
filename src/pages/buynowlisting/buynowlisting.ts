@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MenuController } from 'ionic-angular';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CommonProvider } from "../../providers/common/common";
 import {Http, Headers, RequestOptions} from '@angular/http';
@@ -22,7 +23,8 @@ export class BuynowlistingPage {
 
   constructor(public navCtrl: NavController,
   public common : CommonProvider,
-              public http:Http,) {
+              public http:Http, public menu: MenuController) {
+    this.menu.swipeEnable(false);
                 this.listing();
         // alert(user);
   }

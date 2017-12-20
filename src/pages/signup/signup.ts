@@ -1,5 +1,6 @@
         import { Component,ViewChild } from '@angular/core';
         import { IonicPage, NavController, NavParams } from 'ionic-angular';
+        import { MenuController } from 'ionic-angular';
         import { SigninPage } from '../signin/signin';
         import { TabsPage } from '../tabs/tabs';
         import {Http, Headers, RequestOptions} from '@angular/http';
@@ -38,7 +39,8 @@
                 public navParams: NavParams,
                 public http:Http, 
                 private camera: Camera,
-                public common : CommonProvider,public actionSheetCtrl: ActionSheetController,  public loadingCtrl:LoadingController,private toastCtrl: ToastController, private fb: Facebook,public nativeStorage: NativeStorage) {
+                public common : CommonProvider,public actionSheetCtrl: ActionSheetController,  public loadingCtrl:LoadingController,private toastCtrl: ToastController, private fb: Facebook,public nativeStorage: NativeStorage, public menu: MenuController) {
+    this.menu.swipeEnable(false);
           }
         accessGallery(){
           // alert('camera');
@@ -168,6 +170,7 @@
           toast.present();
              localStorage.setItem('USERID',data.data.id);
              localStorage.setItem("USER_DATA",this.phone_no);
+             localStorage.setItem('USER_EMAIL',data.data.email);
               this.navCtrl.push(TabsPage)
             }else{
             // alert(data.msg)
@@ -246,31 +249,32 @@ this.http.post(url, Serialized, optionss).map(res=>res.json()).subscribe(data=>{
 
   this.Loading.dismiss();
     console.log(data);
-      localStorage.setItem('USERID',data.data._id);
+     
+     if(data.error == 0){
+        localStorage.setItem('USERID',data.data._id);
       localStorage.setItem('FBID',data.data._id);
-        this.navCtrl.push(TabsPage);
-  //   if(data.error == 0){
-  //     //alert(data.msg);
-  //     //var cus = data.cus_id;
-  //     let toast = this.toastCtrl.create({
-  //   message: data.message,
-  //   duration: 3000,
-  //   position: 'middle'
-  // });
-  //  toast.present();
-   
+      localStorage.setItem('RANDOM',data.data.random);
+       localStorage.setItem('USER_EMAIL',data.data.email);
+       
+       let toast = this.toastCtrl.create({
+     message: data.message,
+     duration: 3000,
+     position: 'middle'
+   });
+    toast.present();
+    this.navCtrl.push(TabsPage);
       
     
     
-  //   }else{
-  //     //alert(data.msg)
-  //     let toast = this.toastCtrl.create({
-  //   message: data.message,
-  //   duration: 3000,
-  //   position: 'middle'
-  // });
-  //  toast.present();
-  //   }
+     }else{
+       //alert(data.msg)
+       let toast = this.toastCtrl.create({
+     message: data.message,
+     duration: 3000,
+     position: 'middle'
+   });
+    toast.present();
+     }
   },err => {
     alert("error");
     alert(err);
@@ -281,6 +285,7 @@ this.http.post(url, Serialized, optionss).map(res=>res.json()).subscribe(data=>{
 
 
         },(error) => {
+        this.Loading.dismiss();
           alert(error);
           console.log(error);
         })

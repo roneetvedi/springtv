@@ -1,6 +1,10 @@
 page-fullscreen {
 .backbtn{background-color: transparent;}
 
+.toolbar-title{
+    text-align: left;
+    margin-left: 52px;
+}
 
 .button{
 overflow: hidden;
@@ -142,8 +146,8 @@ top: 25px;
 ul.likes li {
     float: left;
     padding: 0;
-    width: 21%;
-    font-size: 14px;
+    width: 19%;
+    font-size: 17px;
     color: #c7bdbd;
     list-style-type: none;
     display: inline-block;
@@ -154,7 +158,7 @@ ul.likes li {
 
 ul.likes li:last-child
 {          color: #c7bdbd;
-    font-size: 8px;
+    font-size: 17px;
     height: 38px; }
 
       .watch {
@@ -192,10 +196,10 @@ h5{
     margin-left: -25px;
 }
 
-.toolbar-title.toolbar-title-md {
+/*.toolbar-title.toolbar-title-md {
     margin-left: 81px;
     text-align: center;
-}
+}*/
 
 h1::before{
     display: inline-block;
@@ -220,7 +224,8 @@ margin-top: -29px;
     height: 100%;
 }
 
-ul.likes li img{ width: 20px; height: 20px;}
+ul.likes li img{ width: 100%;
+}
 
 .scroll-imgss {
     position: relative;
@@ -238,6 +243,13 @@ ul.likes li img{ width: 20px; height: 20px;}
     color: #c7bdbd;
     font-size: 14px;
     height: 38px;
+}
+
+
+/*---------------12/12/17------------*/
+.trailer.card {
+    width: 100%;
+    box-shadow: none;
 }
 }
 

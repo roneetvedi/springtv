@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,App,Platform } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {CommonProvider} from '../../providers/common/common';
@@ -30,7 +31,8 @@ export class FullscreenepisodePage {
   
   constructor(public navCtrl: NavController,
     public navParams: NavParams,public http:Http,
-    public common : CommonProvider,public app: App,public nativeStorage: NativeStorage,public platform:Platform,public toastCtrl:ToastController) {
+    public common : CommonProvider,public app: App,public nativeStorage: NativeStorage,public platform:Platform,public toastCtrl:ToastController, public menu: MenuController) {
+    this.menu.swipeEnable(false);
     this.srl=this.navParams.get('season_id');
      this.srlt=this.navParams.get('serial_id');
      this.srltt=this.navParams.get('episode_id');
@@ -60,7 +62,7 @@ console.log(this.common.options);
 var option = this.common.options;
 var Serialized = this.serializeObj(datayu);
     console.log(Serialized);
-this.http.post(this.common.base_url +'getlikesbyepisode',Serialized, option).map(res=>res.json()).subscribe(data=>{ 
+this.http.post(this.common.base_url +'likesdislikeepisode',Serialized, option).map(res=>res.json()).subscribe(data=>{ 
   console.log(data);  
   if(data.error == 0){
     this.alldata=data.data;

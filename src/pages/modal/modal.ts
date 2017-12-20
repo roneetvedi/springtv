@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import { MoviesPage } from '../movies/movies';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -31,7 +32,8 @@ public listed='';
 public daties='';
   constructor(public navCtrl: NavController,public navParams: NavParams,
         public http:Http,public loadingCtrl:LoadingController,
-        public common : CommonProvider) {
+        public common : CommonProvider, public menu: MenuController) {
+    this.menu.swipeEnable(false);
           this.presentModal();
   }
 //  movies()

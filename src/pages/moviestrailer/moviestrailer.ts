@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {CommonProvider} from '../../providers/common/common';
 import { LoadingController, App } from 'ionic-angular';
 import { AccountPage } from '../account/account';
 import { SigninPage } from "../signin/signin";
-
+import { Events } from 'ionic-angular';
 @Component({
   selector: 'page-moviestrailer',
   templateUrl: 'moviestrailer.html'
@@ -22,14 +23,32 @@ export class MoviestrailerPage {
     content: 'Please wait...'
     
   });
-  constructor(public navCtrl: NavController,public navParams: NavParams,
+  constructor(public navCtrl: NavController,public navParams: NavParams,public events:Events,
         public http:Http,public loadingCtrl:LoadingController,
-        public common : CommonProvider,public app:App) {
-               this.user= localStorage.getItem('USER_EMAIL');
-                 console.log(this.user);
-       this.check()
-       this.randno=localStorage.getItem('RANDOM');
+        public common : CommonProvider,public app:App, public menu: MenuController) {
+    this.menu.swipeEnable(false);
+      this.common.video = document.getElementsByTagName('video');
+      console.log(this.common.video);
+             if(this.common.video!=null){
+          for(var i=0;i<this.common.video.length;i++){
+            console.log(this.common.video[i]);
+            this.common.video[i].pause();
+            
+        };
+         this.user= localStorage.getItem('USER_EMAIL');
+             console.log(this.user);
+         // this.listing();
+         this.check();
+              this.randno=localStorage.getItem('RANDOM');
        console.log(this.randno);
+        }else{
+            this.user= localStorage.getItem('USER_EMAIL');
+             console.log(this.user);
+         // this.listing();
+         this.check();
+           this.randno=localStorage.getItem('RANDOM');
+    console.log(this.randno);
+        }
   }
     check(){
   this.Loading.present();
@@ -60,7 +79,7 @@ this.http.post(this.common.base_url +'users_login_check',Serialized,option).map(
   })
 }
   latesttrail(){
-    alert('trailers');
+//    alert('trailers');
     var option = this.common.options;
 this.http.get(this.common.base_url +'latesttrailers',option).map(res=>res.json()).subscribe(data=>{
    
@@ -121,4 +140,22 @@ serializeObj(obj) {
  {
    this.app.getRootNav().setRoot(AccountPage);
  } 
+ionViewDidLoad(){
+this.events.subscribe('tab-t0-4', (data)=>{
+//    alert("bhumika")
+      console.log(this.navCtrl.canGoBack())
+//      if(this.navCtrl.canGoBack() == true){
+//        this.navCtrl.popToRoot()
+//      } 
+      for(var i=0;i<this.common.video.length;i++){
+            console.log(this.common.video[i]);
+            this.common.video[i].pause();  
+             this.check();
+
+            
+        };
+    
+       //alert('working')
+     })
+}
 }

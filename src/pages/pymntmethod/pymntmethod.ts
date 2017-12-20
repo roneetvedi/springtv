@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import {ConfirmPage } from '../confirm/confirm';
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal';
 import {Http, Headers, RequestOptions} from '@angular/http';
@@ -47,7 +48,8 @@ export class PymntmethodPage {
               public http:Http,
               private toastCtrl: ToastController,
               public loadingCtrl:LoadingController,
-            private iab: InAppBrowser) {
+            private iab: InAppBrowser, public menu: MenuController) {
+    this.menu.swipeEnable(false);
      this.plan =this.navParams.get('plan_id') ;
      this.plan_p = this.navParams.get('plan_price');
       this.episode = this.navParams.get('episode_id');

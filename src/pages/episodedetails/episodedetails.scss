@@ -1,4 +1,10 @@
 page-episodedetails {
+    
+     .toolbar-title{
+    text-align: left;
+    margin-left: 52px;
+}
+    
 .backbtn{background-color: transparent;}
 .button{
 overflow: hidden;
@@ -16,9 +22,12 @@ overflow: hidden;
     left: 0;
     right: 0;
 }
-   .trailer{    position: relative;
+   .trailer{ 
+       margin: 0;
+       padding: 0;
+       position: relative;
     width: auto;
-    height: 250px;
+    height: 247px;
     overflow: initial; box-shadow:0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0, 0);-webkit-box-shadow:0;}
 
    h1{      
@@ -144,9 +153,13 @@ h1::before, h1::after {
     display: inline-block;
     content: "";
     border-top: 1px solid #5d5d5d;
-    width: 35px;
+    width: 45px;
     margin: 4px 2px;
 }
 
+video {
+    margin: 0;
+    padding: 0;
+}
  
 }

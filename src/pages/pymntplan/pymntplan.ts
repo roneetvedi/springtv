@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { MenuController } from 'ionic-angular';
 import { PymntmethodPage } from '../pymntmethod/pymntmethod';
 import {CommonProvider} from '../../providers/common/common';
 import {Http, Headers, RequestOptions} from '@angular/http';
@@ -24,7 +24,8 @@ export class PymntplanPage {
   epi: any;
   planz: any;
 
-  constructor(public navCtrl: NavController,public navParams: NavParams,public common:CommonProvider,public http:Http) {
+  constructor(public navCtrl: NavController,public navParams: NavParams,public common:CommonProvider,public http:Http, public menu: MenuController) {
+    this.menu.swipeEnable(false);
 this.listing();
 this.epi =this.navParams.get('episode_id') ;
 this.mov =this.navParams.get('movie_id');

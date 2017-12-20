@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams,App,Platform } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {CommonProvider} from '../../providers/common/common';
@@ -21,7 +22,8 @@ export class BillingaddressPage {
     public navParams: NavParams,public http:Http,
     public common : CommonProvider,
     public app: App,
-    public platform:Platform)  {
+    public platform:Platform, public menu: MenuController) {
+    this.menu.swipeEnable(false);
     //  console.log(this.navParams.get('mo_id'));
     //  this.mov_id=this.navParams.get('mo_id');
     //  this.mov_name=this.navParams.get('movie_name');

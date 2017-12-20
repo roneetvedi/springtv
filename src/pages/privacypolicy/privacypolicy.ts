@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { MenuController } from 'ionic-angular';
 import { AboutusPage } from '../aboutus/aboutus';
 import {CommonProvider} from '../../providers/common/common';
 import {Http, Headers, RequestOptions} from '@angular/http';
@@ -13,7 +14,8 @@ export class PrivacypolicyPage {
   public head='';
   public descrip='';
 
-  constructor(public navCtrl: NavController,public http:Http, public common : CommonProvider) {
+  constructor(public navCtrl: NavController,public http:Http, public common : CommonProvider, public menu: MenuController) {
+    this.menu.swipeEnable(false);
       this.listing();
   }
 
